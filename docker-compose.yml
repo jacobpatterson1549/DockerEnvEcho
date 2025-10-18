@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    container_name: "docker-env-echo"
+    environment:
+      - PORT=8080
+      - ASPNETCORE_ENVIRONMENT=Development
+      - MY_name=jacob patterson
+      - MY_job=developer
+      - MY_number=1549
+    ports:
+      - "8080:8080"
