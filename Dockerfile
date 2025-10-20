@@ -15,6 +15,5 @@ RUN dotnet publish -c release -o /app/publish
 # final stage/image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-EXPOSE 8080
 COPY --from=build /app/publish   ./
 ENTRYPOINT ["dotnet", "DockerEnvEcho.dll"]
