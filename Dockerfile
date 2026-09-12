@@ -1,5 +1,5 @@
 # https://hub.docker.com/_/microsoft-dotnet
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
 
 # copy csproj and restore as distinct layers
@@ -13,8 +13,7 @@ RUN dotnet test
 RUN dotnet publish -c release -o /app/publish
 
 # final stage/image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+FROM mcr.microsoft.com/dotnet/aspnet:10.0
 WORKDIR /app
-EXPOSE 8080
 COPY --from=build /app/publish   ./
 ENTRYPOINT ["dotnet", "DockerEnvEcho.dll"]
